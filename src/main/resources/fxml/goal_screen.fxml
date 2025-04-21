@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.GoalController"
+      spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Add Study Goal" style="-fx-font-size: 18px;" />
+
+    <ComboBox fx:id="subjectBox" promptText="Select Subject"/>
+    <TextField fx:id="goalField" promptText="Goal Title"/>
+    <DatePicker fx:id="deadlinePicker"/>
+    <TextArea fx:id="notesArea" promptText="Optional notes..." prefRowCount="3"/>
+
+    <Button text="Add Goal" onAction="#handleAddGoal"/>
+
+    <Label text="Existing Goals:"/>
+    <ListView fx:id="goalList" prefHeight="200"/>
+</VBox>
