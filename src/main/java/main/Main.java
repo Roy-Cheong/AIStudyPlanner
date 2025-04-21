@@ -4,14 +4,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
 
 public class Main extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/subject_screen.fxml"));
-        Scene scene = new Scene(loader.load(), 400, 450);
-        stage.setTitle("AI Study Planner - Subjects");
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/goal_screen.fxml"));
+        Scene scene = new Scene(loader.load(), 450, 500);
+        stage.setTitle("AI Study Planner - Goals");
         stage.setScene(scene);
         stage.show();
     }
