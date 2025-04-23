@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 
 import java.io.IOException;
 
@@ -33,12 +34,16 @@ public class MainController {
         loadUI("plan_screen");
     }
 
-    private void loadUI(String fxmlFile) {
+    public void loadUI(String fxml) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlFile + ".fxml"));
-            contentPane.getChildren().setAll(root);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/" + fxml + ".fxml"));
+            Region pane = loader.load();
+            contentPane.getChildren().setAll(pane);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
 }

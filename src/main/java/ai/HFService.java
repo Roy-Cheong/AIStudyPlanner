@@ -4,22 +4,38 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-// Originally planned with Cohere API, but due to trial key restrictions,
-// this app now uses Hugging Face's Mixtral-8x7B-Instruct model.
-// Free, reliable, and produces structured study plans.
-
-
 public class HFService {
 
-    private static final String API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1";
     private static final String KEY_FILE = "hf.key";
 
     public static String generatePlan(String prompt) {
+        return generatePlan(prompt, "Mixtral");
+    }
+
+    public static String generatePlan(String prompt, String modelChoice) {
         String apiKey = readApiKey();
         if (apiKey == null) return "❌ API key not found.";
 
+        // Safe model selection
+        String modelEndpoint;
+        switch (modelChoice) {
+            case "Custom Model":
+                modelEndpoint = "your-username/custom-model";
+                break;
+            case "HuggingFace - Mixtral":
+            case "Mixtral":
+                modelEndpoint = "mistralai/Mixtral-8x7B-Instruct-v0.1";
+                break;
+            default:
+                modelEndpoint = "mistralai/Mixtral-8x7B-Instruct-v0.1";
+                break;
+        }
+
+        System.out.println("✅ Using HF API Key: " + apiKey);
+        System.out.println("🤖 Using Model: " + modelEndpoint);
+
         try {
-            URL url = new URL(API_URL);
+            URL url = new URL("https://api-inference.huggingface.co/models/" + modelEndpoint);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Authorization", "Bearer " + apiKey);
@@ -32,8 +48,6 @@ public class HFService {
                 }
             """, prompt.replace("\"", "\\\"").replace("\n", "\\n"));
 
-
-            // Prepare JSON payload for Hugging Face Inference API
             try (OutputStream os = conn.getOutputStream()) {
                 os.write(jsonPayload.getBytes("utf-8"));
             }
@@ -44,16 +58,18 @@ public class HFService {
             while ((line = reader.readLine()) != null) response.append(line);
             reader.close();
 
+            // Safely extract generated_text
             String raw = response.toString();
-            int start = raw.indexOf("\"generated_text\":\"") + 18;
-            int end = raw.indexOf("\"}", start);
-            if (start > 17 && end > start) {
-                return raw.substring(start, end).replace("\\n", "\n");
-            } else {
-                return "✅ Got response but failed to parse.";
-            }
+            int start = raw.indexOf("\"generated_text\":\"");
+            if (start == -1) return "✅ Got response but couldn't parse text.";
 
-        } catch (Exception e) {
+            start += 18;
+            int end = raw.indexOf("\"", start);
+            if (end == -1) end = raw.length();
+
+            return raw.substring(start, end).replace("\\n", "\n").replace("\\\"", "\"");
+
+        } catch (IOException e) {
             e.printStackTrace();
             return "❌ Error during Hugging Face API call.";
         }
@@ -61,9 +77,7 @@ public class HFService {
 
     private static String readApiKey() {
         try (BufferedReader br = new BufferedReader(new FileReader(KEY_FILE))) {
-            String key = br.readLine().trim();
-            System.out.println("✅ Using HF API Key: " + key);
-            return key;
+            return br.readLine().trim();
         } catch (IOException e) {
             System.out.println("❌ Couldn't read HF API key from file.");
             return null;
