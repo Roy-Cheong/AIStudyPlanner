@@ -1,24 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="controller.SubjectController"
-      spacing="10" alignment="CENTER">
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.SubjectController"
+            prefWidth="700" prefHeight="600">
 
+    <!-- Title -->
+    <top>
+        <Label text="📚 Subjects" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 20;" BorderPane.alignment="CENTER"/>
+    </top>
 
-    <Label text="Add a Subject" style="-fx-font-size: 18px;" />
+    <!-- Center Form and List -->
+    <center>
+        <HBox spacing="30" alignment="CENTER" style="-fx-padding: 20;">
+            <!-- Form -->
+            <VBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Subject Name:"/>
+                <TextField fx:id="subjectField" prefWidth="200"/>
+                <Label text="Notes:"/>
+                <TextArea fx:id="notesField" prefWidth="200" prefHeight="100"/>
+                <Button text="Add Subject" onAction="#handleAddSubject" styleClass="nav-button"/>
+            </VBox>
 
-    <TextField fx:id="nameField" promptText="Subject name" />
-    <TextArea fx:id="notesArea" promptText="Notes or topics..." prefRowCount="3" />
-    <Button text="Add Subject" onAction="#handleAddSubject" />
+            <!-- Subject List -->
+            <VBox spacing="10" alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
+                <Label text="Your Subjects:"/>
+                <ListView fx:id="subjectList" prefHeight="400" />
+            </VBox>
+        </HBox>
+    </center>
 
-    <Label text="Subjects:" />
-    <ListView fx:id="subjectList" prefHeight="200" />
-</VBox>
+</BorderPane>
+
