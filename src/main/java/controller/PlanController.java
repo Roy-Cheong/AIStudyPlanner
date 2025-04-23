@@ -30,6 +30,7 @@ public class PlanController {
     @FXML private Button copyButton;
     @FXML private ListView<String> historyListView;
     @FXML private ProgressBar deadlineProgressBar;
+    @FXML private Label countLabel;
 
     private List<StudyGoal> allGoals;
 
@@ -52,7 +53,7 @@ public class PlanController {
 
         // Monospace font for better formatting
         resultArea.setFont(Font.font("JetBrains Mono", 13));
-
+        resultArea.textProperty().addListener((obs, oldText, newText) -> updateCount());
         // 📜 Enable click-to-load on saved plans
         setupHistoryClickListener();
     }
@@ -143,6 +144,9 @@ public class PlanController {
                 tooltip.setAutoHide(true);
                 tooltip.show(copyButton, copyButton.getScene().getWindow().getX() + copyButton.getLayoutX(),
                         copyButton.getScene().getWindow().getY() + copyButton.getLayoutY() + 30);
+
+                // ✅ Update word/char count
+                updateCount();
             });
         }).start();
     }
@@ -245,5 +249,13 @@ public class PlanController {
             }
         });
     }
+
+    private void updateCount() {
+        String text = resultArea.getText().trim();
+        int wordCount = text.isEmpty() ? 0 : text.split("\\s+").length;
+        int charCount = text.length();
+        countLabel.setText("Words: " + wordCount + "   Characters: " + charCount);
+    }
+
 }
 

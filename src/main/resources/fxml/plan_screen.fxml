@@ -59,7 +59,10 @@
         </HBox>
 
         <TextArea fx:id="resultArea" wrapText="true" prefRowCount="18" prefWidth="640" id="resultArea" prefHeight="400"/>
-
+        <Label fx:id="countLabel"
+               text="Words: 0   Characters: 0"
+               style="-fx-font-size: 12px; -fx-text-fill: #888;"
+               alignment="CENTER_LEFT"/>
         <Separator />
 
         <Label text="📜 Saved Plans (Recent First)" style="-fx-font-weight: bold;" />
