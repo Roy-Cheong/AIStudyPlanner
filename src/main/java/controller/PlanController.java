@@ -5,6 +5,7 @@ import dao.PlanHistoryDAO;
 import dao.StudyGoalDAO;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -36,7 +37,7 @@ public class PlanController {
     public void initialize() {
         StudyGoalDAO dao = new StudyGoalDAO();
         allGoals = dao.getAllGoals();
-
+        modelComboBox.getItems().clear(); // Always clear first
         modelComboBox.getItems().addAll("HuggingFace - Mixtral", "Custom Model");
         modelComboBox.getSelectionModel().selectFirst();
 
@@ -244,7 +245,5 @@ public class PlanController {
             }
         });
     }
-
-
 }
 

@@ -9,7 +9,8 @@
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
       fx:controller="controller.PlanController"
-      spacing="20" alignment="TOP_CENTER" prefWidth="720" prefHeight="640">
+      spacing="20" alignment="TOP_CENTER" prefWidth="720" prefHeight="640"
+      styleClass="root-background">
 
     <padding>
         <Insets top="25" right="25" bottom="25" left="25"/>
@@ -25,15 +26,7 @@
         </columnConstraints>
 
         <Label text="Model:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <ComboBox fx:id="modelComboBox" prefWidth="220" GridPane.rowIndex="0" GridPane.columnIndex="1">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="HuggingFace - Mixtral"/>
-                    <String fx:value="HuggingFace - GPT2"/>
-                    <String fx:value="Custom Model"/>
-                </FXCollections>
-            </items>
-        </ComboBox>
+        <ComboBox fx:id="modelComboBox" prefWidth="220" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
         <Label text="Subject:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
         <ComboBox fx:id="subjectComboBox" prefWidth="220" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
@@ -50,7 +43,6 @@
                      progress="0.0"
                      styleClass="deadline-bar"/>
     </VBox>
-
     <!-- Action Buttons -->
     <HBox spacing="12" alignment="CENTER_RIGHT">
         <Button text="🔍 Preview Prompt" onAction="#handlePreviewPrompt"/>
@@ -66,7 +58,7 @@
             </Button>
         </HBox>
 
-        <TextArea fx:id="resultArea" wrapText="true" prefRowCount="18" prefWidth="640" id="resultArea"/>
+        <TextArea fx:id="resultArea" wrapText="true" prefRowCount="18" prefWidth="640" id="resultArea" prefHeight="400"/>
 
         <Separator />
 

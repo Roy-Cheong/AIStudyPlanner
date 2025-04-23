@@ -12,7 +12,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.GoalController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.GoalController"
+            styleClass="root-background">
     <children>
         <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
             <padding>

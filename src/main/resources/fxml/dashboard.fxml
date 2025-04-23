@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
-      alignment="TOP_CENTER" spacing="20">
+      alignment="TOP_CENTER" spacing="20"
+      styleClass="root-background">
 
     <padding>
         <Insets top="30" right="40" bottom="30" left="40"/>

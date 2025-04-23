@@ -5,6 +5,11 @@
     -fx-background-color: #f4f6f8;
 }
 
+.root-background {
+    -fx-background-color: #ffffff;
+}
+
+
 /* ==================== Navigation Bar ==================== */
 .nav-button {
     -fx-background-color: transparent;

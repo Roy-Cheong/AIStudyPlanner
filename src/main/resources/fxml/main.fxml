@@ -8,11 +8,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.ToggleButton?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
       fx:controller="controller.MainController"
-      prefWidth="720" prefHeight="650"
+      prefWidth="720" prefHeight="800"
       alignment="TOP_CENTER"
-      fillWidth="true">
+      fillWidth="true"
+      styleClass="root">
 
     <!-- Top Navigation Bar -->
     <HBox spacing="10" prefHeight="50" maxWidth="900"
@@ -43,13 +45,14 @@
                     <Tooltip text="Settings"/>
                 </tooltip>
             </Button>
-            <!-- Future: <Button text="👤" tooltip="Profile" /> -->
+            <ToggleButton fx:id="themeToggle" text="🌙" onAction="#toggleTheme" selected="false">
+                <tooltip><Tooltip text="Toggle Dark Mode"/></tooltip>
+            </ToggleButton>
         </HBox>
     </HBox>
 
     <!-- Content Area -->
     <AnchorPane fx:id="contentPane"
                 maxWidth="1000"
-                VBox.vgrow="ALWAYS"
-                style="-fx-background-color: #ffffff;" />
+                VBox.vgrow="ALWAYS"/>
 </VBox>
