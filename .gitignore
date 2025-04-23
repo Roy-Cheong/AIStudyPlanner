@@ -10,13 +10,16 @@
 out/
 bin/
 
-# DB & JARs
-db/*.db
+# Database & JARs
+*.db
+*.sqlite
 lib/*.jar
 
-# OS files
+# OS Files
 .DS_Store
 Thumbs.db
 
-# API keys
+# API Keys & Env
 hf.key
+*.key
+.env
