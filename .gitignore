@@ -17,3 +17,6 @@ lib/*.jar
 # OS files
 .DS_Store
 Thumbs.db
+
+# API keys
+hf.key
