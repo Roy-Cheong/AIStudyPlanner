@@ -3,21 +3,46 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Tooltip?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
       fx:controller="controller.MainController"
-      prefWidth="800" prefHeight="600">
+      prefWidth="1000" prefHeight="600">
 
     <!-- Top Navigation Bar -->
-    <HBox spacing="10" style="-fx-background-color: #2c3e50;" prefHeight="50" alignment="CENTER_LEFT">
-        <Button text="🏠 Dashboard" onAction="#handleDashboard" styleClass="nav-button"/>
-        <Button text="📚 Subjects" onAction="#handleSubjects" styleClass="nav-button"/>
-        <Button text="🎯 Goals" onAction="#handleGoals" styleClass="nav-button"/>
-        <Button text="💡 AI Planner" onAction="#handlePlanner" styleClass="nav-button"/>
+    <HBox spacing="10" prefHeight="50" style="-fx-background-color: #2c3e50;" alignment="CENTER_LEFT">
+
+        <!-- Left Nav Buttons -->
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets left="20" right="0" top="5" bottom="5"/>
+            </padding>
+            <Button text="📅 Dashboard" onAction="#handleDashboard" styleClass="nav-button"/>
+            <Button text="📚 Subjects" onAction="#handleSubjects" styleClass="nav-button"/>
+            <Button text="🎯 Goals" onAction="#handleGoals" styleClass="nav-button"/>
+            <Button text="💡 AI Planner" onAction="#handlePlanner" styleClass="nav-button"/>
+        </HBox>
+
+        <!-- Stretching space between -->
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <!-- Right Nav Buttons (e.g., Settings/Profile) -->
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <padding>
+                <Insets right="20" top="5" bottom="5"/>
+            </padding>
+            <Button text="⚙️">
+                <tooltip>
+                    <Tooltip text="Settings"/>
+                </tooltip>
+            </Button>
+            <!-- Future: <Button text="👤" tooltip="Profile" /> -->
+        </HBox>
     </HBox>
 
-    <!-- Dynamic Content Area -->
+    <!-- Content Area -->
     <AnchorPane fx:id="contentPane" VBox.vgrow="ALWAYS"/>
-
 </VBox>
