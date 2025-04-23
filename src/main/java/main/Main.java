@@ -11,6 +11,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         VBox root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
         primaryStage.setTitle("📅 AI Study Planner");
         primaryStage.setScene(scene);
         primaryStage.show();
