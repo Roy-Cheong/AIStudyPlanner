@@ -2,7 +2,7 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -30,19 +30,13 @@ public class MainController {
     }
 
     public void handlePlanner() {
-        loadUI("plan_screen");
+        loadUI("planner_screen");
     }
 
-    private void loadUI(String fxml) {
+    private void loadUI(String fxmlFile) {
         try {
-            Node node = FXMLLoader.load(getClass().getResource("/fxml/" + fxml + ".fxml"));
-
-            AnchorPane.setTopAnchor(node, 0.0);
-            AnchorPane.setBottomAnchor(node, 0.0);
-            AnchorPane.setLeftAnchor(node, 0.0);
-            AnchorPane.setRightAnchor(node, 0.0);
-
-            contentPane.getChildren().setAll(node);
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/" + fxmlFile + ".fxml"));
+            contentPane.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
