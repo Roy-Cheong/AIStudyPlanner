@@ -30,7 +30,7 @@ public class MainController {
     }
 
     public void handlePlanner() {
-        loadUI("planner_screen");
+        loadUI("plan_screen");
     }
 
     private void loadUI(String fxmlFile) {
