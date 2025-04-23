@@ -18,9 +18,9 @@ public class Main extends Application {
         primaryStage.setTitle("AI Study Planner");
         primaryStage.setScene(scene);
         primaryStage.setWidth(700);
-        primaryStage.setHeight(700);
+        primaryStage.setHeight(800);
         primaryStage.setMinWidth(650);
-        primaryStage.setMinHeight(500);
+        primaryStage.setMinHeight(600);
         primaryStage.show();
     }
 

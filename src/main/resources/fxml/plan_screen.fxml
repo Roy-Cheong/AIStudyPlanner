@@ -2,57 +2,76 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
+
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
       fx:controller="controller.PlanController"
-      spacing="15" alignment="TOP_CENTER" prefWidth="700" prefHeight="600">
+      spacing="20" alignment="TOP_CENTER" prefWidth="720" prefHeight="640">
 
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="25" right="25" bottom="25" left="25"/>
     </padding>
 
-    <Label text="📝 AI-Generated Study Plan" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <Label text="📝 AI-Generated Study Plan" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-    <VBox spacing="10" VBox.vgrow="NEVER">
-        <HBox spacing="10">
-            <Label text="Model:"/>
-            <ComboBox fx:id="modelComboBox" prefWidth="200">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="HuggingFace - Mixtral"/>
-                        <String fx:value="HuggingFace - GPT2"/>
-                        <String fx:value="Custom Model"/>
-                    </FXCollections>
-                </items>
-            </ComboBox>
-        </HBox>
-        <HBox spacing="10">
-            <Label text="Subject:"/>
-            <ComboBox fx:id="subjectComboBox" prefWidth="200"/>
-        </HBox>
-        <HBox spacing="10">
-            <Label text="Goal:"/>
-            <ComboBox fx:id="goalComboBox" prefWidth="200"/>
-        </HBox>
+    <!-- Selection Controls -->
+    <GridPane hgap="12" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <Label text="Model:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="modelComboBox" prefWidth="220" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="HuggingFace - Mixtral"/>
+                    <String fx:value="HuggingFace - GPT2"/>
+                    <String fx:value="Custom Model"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <Label text="Subject:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="subjectComboBox" prefWidth="220" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Goal:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="goalComboBox" prefWidth="220" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Countdown and Progress -->
+    <VBox spacing="6" alignment="CENTER_LEFT">
+        <Label fx:id="countdownLabel" style="-fx-text-fill: #555; -fx-font-style: italic;"/>
+        <ProgressBar fx:id="deadlineProgressBar"
+                     prefWidth="600"
+                     progress="0.0"
+                     styleClass="deadline-bar"/>
     </VBox>
 
-    <Label fx:id="countdownLabel" style="-fx-text-fill: #555; -fx-font-style: italic;"/>
-
-    <HBox spacing="10" alignment="CENTER_RIGHT">
+    <!-- Action Buttons -->
+    <HBox spacing="12" alignment="CENTER_RIGHT">
         <Button text="🔍 Preview Prompt" onAction="#handlePreviewPrompt"/>
         <Button text="⚙️ Generate Plan" onAction="#handleGenerate"/>
     </HBox>
 
-    <!-- Result Section -->
-    <VBox spacing="8" alignment="TOP_LEFT" maxWidth="600">
+    <!-- Result + History Section -->
+    <VBox spacing="12" alignment="TOP_LEFT" maxWidth="640">
         <HBox spacing="10" alignment="CENTER_LEFT">
-            <Label text="📄 Generated Plan"/>
-            <Button fx:id="copyButton" onAction="#handleCopy" text="📋Copy" id = "copyButton">
+            <Label text="📄 Generated Plan" style="-fx-font-weight: bold;"/>
+            <Button fx:id="copyButton" onAction="#handleCopy" text="📋Copy" id="copyButton">
                 <tooltip><Tooltip text="Copy output to clipboard"/></tooltip>
             </Button>
         </HBox>
-        <TextArea fx:id="resultArea" wrapText="true" prefRowCount="18" prefWidth="600" id = "resultArea"/>
+
+        <TextArea fx:id="resultArea" wrapText="true" prefRowCount="18" prefWidth="640" id="resultArea"/>
+
+        <Separator />
+
+        <Label text="📜 Saved Plans (Recent First)" style="-fx-font-weight: bold;" />
+        <ListView fx:id="historyListView" prefHeight="300" />
     </VBox>
 </VBox>
+

@@ -1,6 +1,7 @@
 package controller;
 
 import ai.HFService;
+import dao.PlanHistoryDAO;
 import dao.StudyGoalDAO;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
+import model.PlanHistory;
 import model.StudyGoal;
 
 import java.time.LocalDate;
@@ -25,6 +27,8 @@ public class PlanController {
     @FXML private TextArea resultArea;
     @FXML private Label countdownLabel;
     @FXML private Button copyButton;
+    @FXML private ListView<String> historyListView;
+    @FXML private ProgressBar deadlineProgressBar;
 
     private List<StudyGoal> allGoals;
 
@@ -47,6 +51,9 @@ public class PlanController {
 
         // Monospace font for better formatting
         resultArea.setFont(Font.font("JetBrains Mono", 13));
+
+        // 📜 Enable click-to-load on saved plans
+        setupHistoryClickListener();
     }
 
     private void updateGoalComboBox() {
@@ -55,6 +62,7 @@ public class PlanController {
         for (StudyGoal goal : allGoals) {
             if (goal.getSubjectName().equals(selectedSubject)) {
                 goalComboBox.getItems().add(goal.getTitle());
+                goalComboBox.setOnAction(e -> loadHistoryForSelectedGoal());
             }
         }
     }
@@ -82,6 +90,12 @@ public class PlanController {
         }
 
         long daysRemaining = ChronoUnit.DAYS.between(LocalDate.now(), selectedGoal.getDeadline());
+        long totalDuration = ChronoUnit.DAYS.between(selectedGoal.getDeadline().minusDays(13), selectedGoal.getDeadline());
+
+        double progress = totalDuration > 0
+                ? 1.0 - ((double) daysRemaining / totalDuration)
+                : 1.0;
+        Platform.runLater(() -> deadlineProgressBar.setProgress(Math.max(0.05, Math.min(progress, 1.0))));
         String countdownText = daysRemaining >= 0
                 ? "⏳ " + daysRemaining + " day(s) left until deadline"
                 : "⚠️ Deadline has passed!";
@@ -111,10 +125,18 @@ public class PlanController {
 
             Platform.runLater(() -> {
                 resultArea.setText(finalResponse);
+
+                // ✅ Copy to clipboard
                 Clipboard clipboard = Clipboard.getSystemClipboard();
                 ClipboardContent clipContent = new ClipboardContent();
                 clipContent.putString(finalResponse);
                 clipboard.setContent(clipContent);
+
+                // ✅ Save to plan history
+                PlanHistoryDAO historyDAO = new PlanHistoryDAO();
+                PlanHistory history = new PlanHistory(selectedGoal.getId(), finalResponse, LocalDate.now().toString());
+                historyDAO.savePlan(history);
+                System.out.println("📝 Plan saved to history.");
 
                 Tooltip tooltip = new Tooltip("✅ Copied to clipboard!");
                 tooltip.setAutoHide(true);
@@ -169,5 +191,60 @@ public class PlanController {
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.showAndWait();
     }
+
+    private void loadHistoryForSelectedGoal() {
+        historyListView.getItems().clear();
+
+        String selectedTitle = goalComboBox.getValue();
+        String selectedSubject = subjectComboBox.getValue();
+        if (selectedTitle == null || selectedSubject == null) return;
+
+        StudyGoal selectedGoal = allGoals.stream()
+                .filter(g -> g.getSubjectName().equals(selectedSubject) && g.getTitle().equals(selectedTitle))
+                .findFirst()
+                .orElse(null);
+
+        if (selectedGoal != null) {
+            PlanHistoryDAO dao = new PlanHistoryDAO();
+            List<PlanHistory> historyList = dao.getPlansForGoal(selectedGoal.getId());
+            for (PlanHistory plan : historyList) {
+                historyListView.getItems().add("📅 " + plan.getCreatedAt() + " — " + plan.getContent().split("\n")[0]);
+            }
+        }
+    }
+
+    private void setupHistoryClickListener() {
+        historyListView.setOnMouseClicked(event -> {
+            String selectedItem = historyListView.getSelectionModel().getSelectedItem();
+            if (selectedItem == null) return;
+
+            String selectedTitle = goalComboBox.getValue();
+            String selectedSubject = subjectComboBox.getValue();
+            if (selectedTitle == null || selectedSubject == null) return;
+
+            StudyGoal selectedGoal = allGoals.stream()
+                    .filter(g -> g.getSubjectName().equals(selectedSubject) && g.getTitle().equals(selectedTitle))
+                    .findFirst()
+                    .orElse(null);
+
+            if (selectedGoal != null) {
+                PlanHistoryDAO dao = new PlanHistoryDAO();
+                List<PlanHistory> historyList = dao.getPlansForGoal(selectedGoal.getId());
+
+                // Find the matching plan by preview
+                String selectedPreview = selectedItem.replaceFirst("📅 \\d{4}-\\d{2}-\\d{2} — ", "");
+                PlanHistory match = historyList.stream()
+                        .filter(ph -> ph.getContent().startsWith(selectedPreview))
+                        .findFirst()
+                        .orElse(null);
+
+                if (match != null) {
+                    resultArea.setText(match.getContent());
+                }
+            }
+        });
+    }
+
+
 }
 
