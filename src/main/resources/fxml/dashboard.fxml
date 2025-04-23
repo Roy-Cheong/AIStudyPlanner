@@ -5,13 +5,22 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
-      alignment="CENTER" spacing="15">
+      alignment="TOP_CENTER" spacing="20">
 
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="30" right="40" bottom="30" left="40"/>
     </padding>
 
     <Label text="📅 Welcome to AI Study Planner" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-    <Label text="Use the top menu to manage subjects, goals, and generate smart plans."
-           wrapText="true" maxWidth="500"/>
+    <Label text="This app helps you organize your subjects, set clear study goals, and use AI to generate personalized weekly study plans."
+           wrapText="true" maxWidth="600"/>
+
+    <Label text="💡 How to Use:" style="-fx-font-size: 18px; -fx-underline: true; -fx-font-weight: bold;" />
+
+    <VBox spacing="10" maxWidth="600">
+        <Label text="📚 Subjects → Add the subjects you’re currently studying." wrapText="true"/>
+        <Label text="🎯 Goals → Set a goal for each subject, with a deadline and optional notes." wrapText="true"/>
+        <Label text="💡 AI Planner → Click 'Generate Plan' to get a tailored weekly schedule using AI." wrapText="true"/>
+        <Label text="📊 You can always come back here for guidance!" wrapText="true"/>
+    </VBox>
 </VBox>
