@@ -1,53 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.GoalController"
             styleClass="root-background">
     <children>
-        <VBox alignment="TOP_CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <VBox alignment="TOP_CENTER" spacing="25" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="20" right="20" bottom="20" left="20" />
             </padding>
 
-            <Label text="🎯 Set a Study Goal" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <!-- Form Section -->
+            <VBox spacing="15" styleClass="card" maxWidth="500">
+                <Label text="🎯 Set a Study Goal" styleClass="card-title" />
 
-            <HBox spacing="10">
-                <Label text="Subject:" minWidth="70"/>
-                <ComboBox fx:id="subjectBox" prefWidth="250"/>
-            </HBox>
+                <HBox spacing="10">
+                    <Label text="Subject:" minWidth="80" styleClass="form-label" />
+                    <ComboBox fx:id="subjectBox" prefWidth="250" />
+                </HBox>
 
-            <HBox spacing="10">
-                <Label text="Goal:" minWidth="70"/>
-                <TextField fx:id="goalField" prefWidth="250"/>
-            </HBox>
+                <HBox spacing="10">
+                    <Label text="Goal:" minWidth="80" styleClass="form-label" />
+                    <TextField fx:id="goalField" prefWidth="250" />
+                </HBox>
 
-            <HBox spacing="10">
-                <Label text="Deadline:" minWidth="70"/>
-                <DatePicker fx:id="deadlinePicker" prefWidth="250"/>
-            </HBox>
+                <HBox spacing="10">
+                    <Label text="Deadline:" minWidth="80" styleClass="form-label" />
+                    <DatePicker fx:id="deadlinePicker" prefWidth="250" />
+                </HBox>
 
-            <HBox spacing="10">
-                <Label text="Notes:" minWidth="70"/>
-                <TextArea fx:id="notesArea" prefWidth="250" prefHeight="80"/>
-            </HBox>
+                <HBox spacing="10">
+                    <Label text="Notes:" minWidth="80" styleClass="form-label" />
+                    <TextArea fx:id="notesArea" prefWidth="250" prefHeight="80" />
+                </HBox>
 
-            <Button text="➕ Add Goal" onAction="#handleAddGoal" prefWidth="150"/>
+                <HBox alignment="CENTER_RIGHT">
+                    <Button text="➕ Add Goal" onAction="#handleAddGoal" prefWidth="150" />
+                </HBox>
+            </VBox>
 
-            <!-- Clean Section for Goals List -->
-            <VBox spacing="10" alignment="TOP_CENTER">
-                <Label text="📋 Your Goals" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-                <ListView fx:id="goalList" prefWidth="400" prefHeight="150"/>
+            <!-- Goals List Section -->
+            <VBox spacing="10" alignment="TOP_CENTER" styleClass="card" maxWidth="500">
+                <Label text="📋 Your Goals" styleClass="card-title" />
+                <ListView fx:id="goalList" prefWidth="450" prefHeight="180" />
             </VBox>
         </VBox>
     </children>

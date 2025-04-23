@@ -7,7 +7,7 @@ import model.Subject;
 
 public class SubjectController {
     @FXML private TextField nameField;
-    @FXML private TextArea notesArea;
+    @FXML private TextField notesArea;
     @FXML private ListView<String> subjectList;
 
     private final SubjectDAO subjectDAO = new SubjectDAO();

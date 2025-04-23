@@ -2,13 +2,17 @@
 .root {
     -fx-font-family: "Segoe UI", "Inter", "Helvetica Neue", "Arial", sans-serif;
     -fx-font-size: 14px;
-    -fx-background-color: #f4f6f8;
+     -fx-background-color: #ffffff;
+    -fx-text-fill: #2c3e50;
 }
 
 .root-background {
     -fx-background-color: #ffffff;
 }
 
+.anchor-pane, .vbox, .hbox {
+    -fx-background-color: #ffffff;
+}
 
 /* ==================== Navigation Bar ==================== */
 .nav-button {
@@ -17,50 +21,55 @@
     -fx-font-size: 15px;
     -fx-font-weight: bold;
     -fx-padding: 6 12;
-    -fx-border-radius: 4;
+    -fx-border-radius: 6;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 2, 0, 0, 1);
 }
 
 .nav-button:hover {
     -fx-underline: true;
     -fx-text-fill: #00bfff;
-    -fx-cursor: hand;
 }
 
 /* ==================== Buttons ==================== */
 .button {
     -fx-font-size: 13px;
     -fx-padding: 6 14;
-    -fx-background-radius: 6;
+    -fx-background-color: #2d9cdb;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-background-color: #238ac9;
 }
 
 #copyButton {
     -fx-background-color: #3498db;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
     -fx-background-radius: 8;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0, 0, 1);
 }
 
 #copyButton:hover {
     -fx-background-color: #2980b9;
-    -fx-cursor: hand;
 }
 
-/* ==================== ComboBoxes ==================== */
-.combo-box {
+/* ==================== Inputs (ComboBox, TextField, TextArea) ==================== */
+.combo-box, .text-field, .text-area {
     -fx-background-radius: 6;
     -fx-border-color: #ccc;
     -fx-border-radius: 6;
-    -fx-padding: 4 10;
+    -fx-padding: 6 10;
+    -fx-font-size: 13px;
+    -fx-text-fill: #2c3e50;
+    -fx-prompt-text-fill: #aaa;
 }
 
 /* ==================== TextArea Result ==================== */
 .text-area {
     -fx-font-family: "JetBrains Mono", "Consolas", "Courier New", monospace;
-    -fx-font-size: 13px;
-    -fx-text-fill: #2c3e50;
-    -fx-control-inner-background: #fdfdfd;
+    -fx-control-inner-background: #ffffff;
     -fx-background-insets: 0;
     -fx-background-radius: 10;
     -fx-border-color: #d0d7de;
@@ -78,8 +87,9 @@
     -fx-text-fill: #2c3e50;
 }
 
-.label[style*="-fx-font-size: 18px"] {
-    -fx-text-fill: #2c3e50;
+.label[style*="-fx-font-size: 18px"],
+.label[style*="font-size: 20px"],
+.label[style*="font-size: 22px"] {
     -fx-font-weight: bold;
 }
 
@@ -109,8 +119,8 @@ VBox, HBox {
     -fx-border-color: #ccc;
     -fx-border-radius: 6;
     -fx-padding: 6;
-    -fx-font-family: "Segoe UI", "Arial";
-    -fx-font-size: 12px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #2c3e50;
 }
 
 .deadline-bar {
@@ -120,5 +130,3 @@ VBox, HBox {
     -fx-padding: 4;
     -fx-min-height: 16px;
 }
-
-
