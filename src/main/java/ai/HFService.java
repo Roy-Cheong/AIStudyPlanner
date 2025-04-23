@@ -4,9 +4,14 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+// Originally planned with Cohere API, but due to trial key restrictions,
+// this app now uses Hugging Face's Mixtral-8x7B-Instruct model.
+// Free, reliable, and produces structured study plans.
+
+
 public class HFService {
 
-    private static final String API_URL = "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct";
+    private static final String API_URL = "https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1";
     private static final String KEY_FILE = "hf.key";
 
     public static String generatePlan(String prompt) {
@@ -27,6 +32,8 @@ public class HFService {
                 }
             """, prompt.replace("\"", "\\\"").replace("\n", "\\n"));
 
+
+            // Prepare JSON payload for Hugging Face Inference API
             try (OutputStream os = conn.getOutputStream()) {
                 os.write(jsonPayload.getBytes("utf-8"));
             }

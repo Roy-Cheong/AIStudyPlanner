@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/goal_screen.fxml"));
-        Scene scene = new Scene(loader.load(), 450, 500);
-        stage.setTitle("AI Study Planner - Goals");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/plan_screen.fxml"));
+        Scene scene = new Scene(loader.load(), 600, 600);
+        stage.setTitle("AI Study Planner - Generate Plan");
         stage.setScene(scene);
         stage.show();
     }
