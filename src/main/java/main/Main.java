@@ -13,9 +13,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
         primaryStage.setTitle("AI Study Planner");
         primaryStage.setScene(new Scene(root));
-        primaryStage.setWidth(720);
-        primaryStage.setHeight(600);
-        primaryStage.setMinWidth(600);
+        primaryStage.setWidth(700);
+        primaryStage.setHeight(700);
+        primaryStage.setMinWidth(650);
         primaryStage.setMinHeight(500);
         primaryStage.show();
     }

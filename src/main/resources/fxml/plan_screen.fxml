@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
       fx:controller="controller.PlanController"
-      spacing="10" alignment="CENTER">
+      spacing="15" alignment="TOP_CENTER" prefWidth="700" prefHeight="600">
+
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="20" bottom="20" left="20" right="20"/>
     </padding>
 
-    <Label text="AI Study Plan Generator" style="-fx-font-size: 18px;" />
-    <Button text="Generate Study Plan" onAction="#handleGenerate"/>
-    <TextArea fx:id="outputArea" prefHeight="400" wrapText="true" editable="false"/>
+    <!-- Header -->
+    <Label text="💡 AI Study Plan Generator" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <!-- Dropdowns & Button -->
+    <GridPane hgap="10" vgap="10">
+        <padding>
+            <Insets top="10" bottom="10"/>
+        </padding>
+
+        <Label text="📚 Subject:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="subjectComboBox" prefWidth="200" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="🎯 Goal:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="goalComboBox" prefWidth="200" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Button text="🚀 Generate Plan"
+                onAction="#handleGenerate"
+                GridPane.rowIndex="2" GridPane.columnIndex="1"
+                style="-fx-font-size: 14px; -fx-padding: 8 16;"/>
+    </GridPane>
+
+    <!-- Result Label -->
+    <Label text="📝 Study Plan Result:" style="-fx-font-weight: bold; -fx-font-size: 16px;" alignment="CENTER_LEFT"/>
+
+    <!-- Output TextArea -->
+    <TextArea fx:id="resultArea" wrapText="true" editable="false"
+              prefHeight="400" prefWidth="650" VBox.vgrow="ALWAYS"
+              style="-fx-font-family: 'Consolas'; -fx-font-size: 14px;"/>
+
 </VBox>

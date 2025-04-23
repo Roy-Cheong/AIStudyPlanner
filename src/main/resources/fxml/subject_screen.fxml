@@ -4,34 +4,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.SubjectController"
-            prefWidth="700" prefHeight="600">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.SubjectController"
+      spacing="20" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
-    <!-- Title -->
-    <top>
-        <Label text="📚 Subjects" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 20;" BorderPane.alignment="CENTER"/>
-    </top>
+    <Label text="📚 Manage Subjects"
+           style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
 
-    <!-- Center Form and List -->
-    <center>
-        <HBox spacing="30" alignment="CENTER" style="-fx-padding: 20;">
-            <!-- Form -->
-            <VBox spacing="10" alignment="CENTER_LEFT">
-                <Label text="Subject Name:"/>
-                <TextField fx:id="subjectField" prefWidth="200"/>
-                <Label text="Notes:"/>
-                <TextArea fx:id="notesField" prefWidth="200" prefHeight="100"/>
-                <Button text="Add Subject" onAction="#handleAddSubject" styleClass="nav-button"/>
-            </VBox>
+    <HBox spacing="10" alignment="CENTER">
+        <TextField fx:id="subjectNameField" promptText="Subject name" prefWidth="200"/>
+        <TextField fx:id="subjectNoteField" promptText="Notes" prefWidth="200"/>
+        <Button text="Add Subject" onAction="#handleAddSubject"/>
+    </HBox>
 
-            <!-- Subject List -->
-            <VBox spacing="10" alignment="TOP_LEFT" HBox.hgrow="ALWAYS">
-                <Label text="Your Subjects:"/>
-                <ListView fx:id="subjectList" prefHeight="400" />
-            </VBox>
-        </HBox>
-    </center>
+    <Label text="Your Subjects" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
 
-</BorderPane>
+    <ListView fx:id="subjectList" prefHeight="300" prefWidth="450"/>
 
+</VBox>
