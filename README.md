@@ -1,75 +1,75 @@
-# 📘 AI Study Planner (JavaFX + HuggingFace)
+# 📘 AI Study Planner — JavaFX Desktop App + Hugging Face AI
 
-**AI Study Planner** is a sleek desktop application that helps students organize subjects, track study goals, and generate personalized weekly study plans using Hugging Face's AI API. Built with JavaFX and SQLite, the app blends clean UI with practical AI assistance.
+**AI Study Planner** helps students stay organized and on track with smart subject management and AI-powered weekly plans. Built with JavaFX and SQLite, it features a polished UI, modern UX, and seamless integration with Hugging Face's AI API.
 
 ---
 
 ## 🧠 Features
 
-### 🎯 Subject & Goal Management
-- Add, edit, or delete **study subjects** with notes
-- Link **multiple goals** to each subject
-- Set **deadlines** and enter optional goal notes
+### 🎯 Subjects & Goals
+- Add, edit, and delete **subjects** with notes
+- Link multiple **goals** to each subject
+- Set **deadlines** and keep track of **goal notes**
 
-### 🤖 AI-Powered Study Plan Generator
-- Choose a subject and goal → click generate
-- Personalized **7-day plan** using Hugging Face Inference API
-- Highlights daily tasks, estimates, and summary
+### 🤖 AI-Powered Study Plans
+- Select a subject and goal → click generate
+- Automatically creates a personalized **7-day plan**
+- Highlights daily tasks, estimated durations, and a clear summary
 
-### 💡 Smart UI/UX
-- Modern JavaFX interface with light/dark mode toggle 🌙
-- Balanced layout using `VBox`, `GridPane`, and spacing
-- Navigation bar with emoji-enhanced sections:
+### 💡 Smart UI & UX
+- Modern JavaFX interface with **light/dark mode** 🌞🌙
+- Responsive layout using `VBox`, `GridPane`, and adaptive spacing
+- Emoji-powered nav bar:  
   `📅 Dashboard`, `📚 Subjects`, `🎯 Goals`, `💡 AI Planner`
-- Tooltips for every control to guide new users
-- Copy-to-clipboard + word/char counter + progress bar
+- Tooltips for all controls to guide new users
+- **Copy to Clipboard**, **Word/Char Counter**, and **Deadline Progress Bar**
 
-### 💾 Local & Persistent
-- Data saved locally with **SQLite**
-- Study plans stored in history (recent-first)
-- Auto-refresh on action or delete
+### 🗂️ Local & Persistent
+- Data stored locally via **SQLite**
+- Full **study plan history** with recent-first ordering
+- Instant UI updates on add/edit/delete
 
 ---
 
 ## 🖼️ Screenshots
 
 ### 🌞 Light Mode
-![Light Dashboard](src/main/resources/assets/dashboard_light.png)
+![Light Dashboard](src/main/resources/assets/dashboard_light.png)  
 ![Light Planner](src/main/resources/assets/planner_light.png)
 
 ### 🌙 Dark Mode
-![Dark Dashboard](src/main/resources/assets/dashboard_dark.png)
+![Dark Dashboard](src/main/resources/assets/dashboard_dark.png)  
 ![Dark Planner](src/main/resources/assets/planner_dark.png)
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer         | Tech Used                                  |
-|---------------|---------------------------------------------|
-| Language      | Java 17                                     |
-| UI Framework  | JavaFX 17.0.15                              |
-| Backend API   | Hugging Face Inference API                 |
-| Database      | SQLite (with DAO pattern)                  |
-| Architecture  | MVC (Model-View-Controller)                |
+| Layer         | Tech Used                          |
+|---------------|-------------------------------------|
+| Language      | Java 17                             |
+| UI Framework  | JavaFX 17.0.15                      |
+| API           | Hugging Face Inference API          |
+| Database      | SQLite (DAO pattern)                |
+| Architecture  | MVC (Model-View-Controller)         |
 
 ---
 
-## 🚀 How to Run
+## 🚀 Getting Started
 
-### 1. Clone the Repo
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/Roy-Cheong/AIStudyPlanner.git
 cd AIStudyPlanner
 ```
 
-### 2. Requirements
+### 2. Prerequisites
 - Java 17+
 - JavaFX SDK 17.0.15+
-- Internet (for API calls)
+- Internet access (for API calls)
 
-### 3. Hugging Face API Key
-Create a file named `hf.key` in the project root:
+### 3. Add Your Hugging Face API Key
+Create a file named `hf.key` in the root:
 ```
 hf_abc123yourkey
 ```
@@ -78,24 +78,23 @@ hf_abc123yourkey
 
 ## ✅ Roadmap
 
-- [x] Full CRUD for goals and subjects
-- [x] Clean UI with dark mode
-- [x] Personalized study plan generator
-- [x] Save plan history + word counter
-- [x] Copy-to-clipboard & deadline progress bar
-- [ ] Export study plan to PDF or Markdown (future)
-- [ ] Custom AI prompt builder (stretch goal)
+- [x] Full CRUD for subjects and goals
+- [x] AI study plan generator via Hugging Face
+- [x] Clean light/dark UI with responsive layout
+- [x] Study Plan History, Word Count, Copy Support
+- [ ] Export to PDF / Markdown (planned)
+- [ ] Custom AI prompt editor (stretch)
 
 ---
 
 ## 👨‍💻 Author
 
-Made with ☕ and JetBrains IDEs by **Roy Cheong**  
-→ Learning through building and shipping projects 🚀
+Made with ☕ + 💻 by **Roy Cheong**
+> Learning through building & shipping projects, one app at a time.
 
 ---
 
 ## 📜 License
 
-MIT — open source, use freely, credit appreciated!
+**MIT** — free to use, fork, and build on. Attribution appreciated.
 ```
