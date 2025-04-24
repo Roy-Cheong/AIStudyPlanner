@@ -1,96 +1,108 @@
+Let’s level up your `README.md` to reflect the **final polished state** of your AI Study Planner project — including all the new features, dark mode, delete/edit support, and GitHub-readiness.
+
+---
+
+### ✅ **Updated `README.md`:**
+
+```markdown
 # 📘 AI Study Planner (JavaFX + HuggingFace)
 
-**AI Study Planner** is a modern desktop app that helps students plan smarter, not harder. Organize your study goals and generate personalized weekly study plans powered by Hugging Face's AI. Built with JavaFX, SQLite, and pure motivation.
+**AI Study Planner** is a sleek desktop application that helps students organize subjects, track study goals, and generate personalized weekly study plans using Hugging Face's AI API. Built with JavaFX and SQLite, the app blends clean UI with practical AI assistance.
 
 ---
 
 ## 🧠 Features
 
-### 🎯 Goal & Subject Management
-- Add and manage **subjects**
+### 🎯 Subject & Goal Management
+- Add, edit, or delete **study subjects** with notes
 - Link **multiple goals** to each subject
-- Assign **deadlines** and write **notes**
+- Set **deadlines** and enter optional goal notes
 
-### 🤖 AI-Powered Plan Generation
-- Select a goal and click "Generate"
-- Uses Hugging Face Inference API for study plan generation
-- Produces a **14-day structured plan** with clear formatting
-- Supports prompt preview and result copy to clipboard
+### 🤖 AI-Powered Study Plan Generator
+- Choose a subject and goal → click generate
+- Personalized **7-day plan** using Hugging Face Inference API
+- Highlights daily tasks, estimates, and summary
 
-### 💡 Streamlined UX
-- Modern, responsive JavaFX layout
-- Global **dark/light mode toggle** with custom themes
-- Live **deadline countdown bar**
-- **Saved plan history** per goal with click-to-load
-- **Smart formatting** with emojis, icons, and summaries
+### 💡 Smart UI/UX
+- Modern JavaFX interface with light/dark mode toggle 🌙
+- Balanced layout using `VBox`, `GridPane`, and spacing
+- Navigation bar with emoji-enhanced sections:
+  `📅 Dashboard`, `📚 Subjects`, `🎯 Goals`, `💡 AI Planner`
+- Tooltips for every control to guide new users
+- Copy-to-clipboard + word/char counter + progress bar
 
-### ✅ Under the Hood
-- Java 17 + JavaFX SDK 17.0.15
-- SQLite for local data persistence
-- Hugging Face for LLM-based generation
-- Modular MVC architecture (Models, DAOs, Controllers)
+### 💾 Local & Persistent
+- Data saved locally with **SQLite**
+- Study plans stored in history (recent-first)
+- Auto-refresh on action or delete
 
 ---
 
 ## 🖼️ Screenshots
-> ⚠️ Screenshots coming soon!
-- Subject & Goal Forms
-- AI Output with summary and plan
-- Dark Mode showcase
+
+### 🌞 Light Mode
+![Light Dashboard](assets/dashboard_light.png)
+![Light Planner](assets/planner_light.png)
+
+### 🌙 Dark Mode
+![Dark Dashboard](assets/dashboard_dark.png)
+![Dark Planner](assets/planner_dark.png)
 
 ---
 
-## 🛠️ Setup
+## 🛠️ Tech Stack
 
-### 1. Clone the Project
+| Layer         | Tech Used                                  |
+|---------------|---------------------------------------------|
+| Language      | Java 17                                     |
+| UI Framework  | JavaFX 17.0.15                              |
+| Backend API   | Hugging Face Inference API                 |
+| Database      | SQLite (with DAO pattern)                  |
+| Architecture  | MVC (Model-View-Controller)                |
+
+---
+
+## 🚀 How to Run
+
+### 1. Clone the Repo
 ```bash
 git clone https://github.com/Roy-Cheong/AIStudyPlanner.git
 cd AIStudyPlanner
 ```
 
 ### 2. Requirements
-- Java 17
-- JavaFX SDK 17.0.15
-- Internet connection for Hugging Face API
+- Java 17+
+- JavaFX SDK 17.0.15+
+- Internet (for API calls)
 
-### 3. Add Your API Key
-Create a file named `hf.key` in the root directory:
-```bash
+### 3. Hugging Face API Key
+Create a file named `hf.key` in the project root:
+```
 hf_abc123yourkey
-```
-The app securely reads this at runtime.
-
----
-
-## 🚀 Run
-- Open in IntelliJ IDEA or your favorite IDE
-- Run `main.Main`
-
-> JavaFX VM options:
-```
---module-path /path/to/javafx-sdk-17.0.15/lib --add-modules javafx.controls,javafx.fxml
 ```
 
 ---
 
 ## ✅ Roadmap
-- [x] Subject and goal management
-- [x] AI plan generation with Hugging Face
-- [x] Layout redesign with clean UI
-- [x] Copy to clipboard + prompt preview
-- [x] Plan history + click-to-load
-- [x] Live deadline progress bar
-- [x] Global dark/light mode toggle 🌗
-- [ ] Export study plans to PDF/Markdown
-- [ ] Goal editing & subject deletion
+
+- [x] Full CRUD for goals and subjects
+- [x] Clean UI with dark mode
+- [x] Personalized study plan generator
+- [x] Save plan history + word counter
+- [x] Copy-to-clipboard & deadline progress bar
+- [ ] Export study plan to PDF or Markdown (future)
+- [ ] Custom AI prompt builder (stretch goal)
 
 ---
 
-## 🧑‍💻 Author
-Built with 💻 and ☕ by **Roy Cheong**
+## 👨‍💻 Author
+
+Made with ☕ and JetBrains IDEs by **Roy Cheong**  
+→ Learning through building and shipping projects 🚀
 
 ---
 
 ## 📜 License
-Licensed under the **MIT License**.
 
+MIT — open source, use freely, credit appreciated!
+```
