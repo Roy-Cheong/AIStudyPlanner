@@ -57,4 +57,30 @@ public class StudyGoalDAO {
         }
         return list;
     }
+
+    public void updateGoal(StudyGoal goal) {
+        String sql = "UPDATE study_goals SET subject_name = ?, title = ?, deadline = ?, notes = ? WHERE id = ?";
+        try (PreparedStatement pstmt = DBConnector.getConnection().prepareStatement(sql)) {
+            pstmt.setString(1, goal.getSubjectName());
+            pstmt.setString(2, goal.getTitle());
+            pstmt.setString(3, goal.getDeadline().toString());
+            pstmt.setString(4, goal.getNotes());
+            pstmt.setInt(5, goal.getId());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteGoal(int goalId) {
+        String sql = "DELETE FROM study_goals WHERE id = ?";
+        try (PreparedStatement pstmt = DBConnector.getConnection().prepareStatement(sql)) {
+            pstmt.setInt(1, goalId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

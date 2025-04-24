@@ -26,13 +26,25 @@
         </columnConstraints>
 
         <Label text="Model:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <ComboBox fx:id="modelComboBox" prefWidth="220" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <ComboBox fx:id="modelComboBox" prefWidth="220" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <tooltip>
+                <Tooltip text="Select the AI model for generating your study plan"/>
+            </tooltip>
+        </ComboBox>
 
         <Label text="Subject:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <ComboBox fx:id="subjectComboBox" prefWidth="220" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <ComboBox fx:id="subjectComboBox" prefWidth="220" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="Select your subject...">
+            <tooltip>
+                <Tooltip text="Choose the subject related to your goal"/>
+            </tooltip>
+        </ComboBox>
 
         <Label text="Goal:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <ComboBox fx:id="goalComboBox" prefWidth="220" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <ComboBox fx:id="goalComboBox" prefWidth="220" GridPane.rowIndex="2" GridPane.columnIndex="1" promptText="Select your goal...">
+            <tooltip>
+                <Tooltip text="Select a specific goal linked to the subject"/>
+            </tooltip>
+        </ComboBox>
     </GridPane>
 
     <!-- Countdown and Progress -->
@@ -45,8 +57,13 @@
     </VBox>
     <!-- Action Buttons -->
     <HBox spacing="12" alignment="CENTER_RIGHT">
-        <Button text="🔍 Preview Prompt" onAction="#handlePreviewPrompt"/>
-        <Button text="⚙️ Generate Plan" onAction="#handleGenerate"/>
+        <Button text="🔍 Preview Prompt" onAction="#handlePreviewPrompt">
+            <tooltip><Tooltip text="View the full AI prompt before sending it"/></tooltip>
+        </Button>
+
+        <Button text="⚙️ Generate Plan" onAction="#handleGenerate">
+            <tooltip><Tooltip text="Generate a personalized study plan using AI"/></tooltip>
+        </Button>
     </HBox>
 
     <!-- Result + History Section -->
@@ -58,7 +75,8 @@
             </Button>
         </HBox>
 
-        <TextArea fx:id="resultArea" wrapText="true" prefRowCount="18" prefWidth="640" id="resultArea" prefHeight="400"/>
+        <TextArea fx:id="resultArea" wrapText="true" prefRowCount="18" prefWidth="640" id="resultArea" prefHeight="400">
+        </TextArea>
         <Label fx:id="countLabel"
                text="Words: 0   Characters: 0"
                style="-fx-font-size: 12px; -fx-text-fill: #888;"
@@ -66,7 +84,11 @@
         <Separator />
 
         <Label text="📜 Saved Plans (Recent First)" style="-fx-font-weight: bold;" />
-        <ListView fx:id="historyListView" prefHeight="300" />
+        <ListView fx:id="historyListView" prefHeight="300">
+            <tooltip>
+                <Tooltip text="Click on a saved plan to view it again"/>
+            </tooltip>
+        </ListView>
     </VBox>
 </VBox>
 

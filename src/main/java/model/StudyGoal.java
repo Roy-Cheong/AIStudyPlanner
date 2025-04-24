@@ -26,4 +26,20 @@ public class StudyGoal {
     public String getTitle() { return title; }
     public LocalDate getDeadline() { return deadline; }
     public String getNotes() { return notes; }
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
 }

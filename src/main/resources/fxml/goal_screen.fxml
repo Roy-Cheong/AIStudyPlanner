@@ -4,48 +4,48 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.GoalController"
-            styleClass="root-background">
-    <children>
-        <VBox alignment="TOP_CENTER" spacing="25" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20" />
-            </padding>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.GoalController"
+      spacing="30" alignment="TOP_CENTER"
+      styleClass="root-background">
 
-            <!-- Form Section -->
-            <VBox spacing="15" styleClass="card" maxWidth="500">
-                <Label text="🎯 Set a Study Goal" styleClass="card-title" />
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
 
-                <HBox spacing="10">
-                    <Label text="Subject:" minWidth="80" styleClass="form-label" />
-                    <ComboBox fx:id="subjectBox" prefWidth="250" />
-                </HBox>
+    <Label text="🎯 Set a Study Goal" styleClass="screen-title"/>
 
-                <HBox spacing="10">
-                    <Label text="Goal:" minWidth="80" styleClass="form-label" />
-                    <TextField fx:id="goalField" prefWidth="250" />
-                </HBox>
+    <!-- Form Section -->
+    <GridPane hgap="15" vgap="12">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
 
-                <HBox spacing="10">
-                    <Label text="Deadline:" minWidth="80" styleClass="form-label" />
-                    <DatePicker fx:id="deadlinePicker" prefWidth="250" />
-                </HBox>
+        <Label text="Subject:" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="subjectBox" prefWidth="250" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                <HBox spacing="10">
-                    <Label text="Notes:" minWidth="80" styleClass="form-label" />
-                    <TextArea fx:id="notesArea" prefWidth="250" prefHeight="80" />
-                </HBox>
+        <Label text="Goal:" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="goalField" promptText="e.g. Revise Chapter 4" prefWidth="250" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                <HBox alignment="CENTER_RIGHT">
-                    <Button text="➕ Add Goal" onAction="#handleAddGoal" prefWidth="150" />
-                </HBox>
-            </VBox>
+        <Label text="Deadline:" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="deadlinePicker" prefWidth="250" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-            <!-- Goals List Section -->
-            <VBox spacing="10" alignment="TOP_CENTER" styleClass="card" maxWidth="500">
-                <Label text="📋 Your Goals" styleClass="card-title" />
-                <ListView fx:id="goalList" prefWidth="450" prefHeight="180" />
-            </VBox>
-        </VBox>
-    </children>
-</AnchorPane>
+        <Label text="Notes:" styleClass="form-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextArea fx:id="notesArea" promptText="Optional notes..." prefWidth="250" prefHeight="100" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Button -->
+    <Button text="➕ Add Goal" onAction="#handleAddGoal" styleClass="accent-button"/>
+
+    <!-- Goals Section -->
+    <VBox spacing="14" alignment="TOP_CENTER">
+        <Label text="📋 Your Goals" styleClass="section-title"/>
+        <ListView fx:id="goalList" prefHeight="280" prefWidth="460"/>
+        <HBox spacing="12" alignment="CENTER">
+            <Button text="✏️ Edit" onAction="#handleUpdateGoal"/>
+            <Button text="🗑️ Delete" onAction="#handleDeleteGoal"/>
+        </HBox>
+    </VBox>
+
+</VBox>
