@@ -34,12 +34,12 @@
 ## 🖼️ Screenshots
 
 ### 🌞 Light Mode
-![Light Dashboard](resources/assets/dashboard_light.png)
-![Light Planner](resources/assets/planner_light.png)
+![Light Dashboard](src/main/resources/assets/dashboard_light.png)
+![Light Planner](src/main/resources/assets/planner_light.png)
 
 ### 🌙 Dark Mode
-![Dark Dashboard](resources/assets/dashboard_dark.png)
-![Dark Planner](resources/assets/planner_dark.png)
+![Dark Dashboard](src/main/resources/assets/dashboard_dark.png)
+![Dark Planner](src/main/resources/assets/planner_dark.png)
 
 ---
 
