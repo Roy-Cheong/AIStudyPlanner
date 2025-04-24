@@ -1,10 +1,3 @@
-Let’s level up your `README.md` to reflect the **final polished state** of your AI Study Planner project — including all the new features, dark mode, delete/edit support, and GitHub-readiness.
-
----
-
-### ✅ **Updated `README.md`:**
-
-```markdown
 # 📘 AI Study Planner (JavaFX + HuggingFace)
 
 **AI Study Planner** is a sleek desktop application that helps students organize subjects, track study goals, and generate personalized weekly study plans using Hugging Face's AI API. Built with JavaFX and SQLite, the app blends clean UI with practical AI assistance.
