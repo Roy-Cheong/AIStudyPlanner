@@ -48,8 +48,11 @@
                 <Tooltip text="View all the subjects you've added here"/>
             </tooltip>
         </ListView>
-        <Button text="🗑️ Delete Subject" onAction="#handleDeleteSubject" />
-
+        <Button text="🗑️ Delete Subject" onAction="#handleDeleteSubject">
+            <tooltip>
+                <Tooltip text="Delete the selected subject (only if no goals are linked)"/>
+            </tooltip>
+        </Button>
     </VBox>
 
 </VBox>

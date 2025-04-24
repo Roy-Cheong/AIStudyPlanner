@@ -15,10 +15,11 @@ public class GoalController {
     @FXML private DatePicker deadlinePicker;
     @FXML private TextArea notesArea;
     @FXML private ListView<String> goalList;
-
+    @FXML private Button addGoalButton;
     private final StudyGoalDAO goalDAO = new StudyGoalDAO();
     private final SubjectDAO subjectDAO = new SubjectDAO();
     private StudyGoal selectedGoal = null;
+
 
     @FXML
     public void initialize() {
@@ -40,7 +41,12 @@ public class GoalController {
                     subjectBox.setValue(selectedGoal.getSubjectName());
                     deadlinePicker.setValue(selectedGoal.getDeadline());
                     notesArea.setText(selectedGoal.getNotes());
+
+                    // 🔁 Change button to update mode
+                    addGoalButton.setText("✏️ Update Goal");
                 }
+            } else {
+                clearForm(); // resets and sets text back
             }
         });
     }
@@ -95,6 +101,7 @@ public class GoalController {
         deadlinePicker.setValue(null);
         subjectBox.getSelectionModel().clearSelection();
         selectedGoal = null;
+        addGoalButton.setText("➕ Add Goal");
     }
 }
 

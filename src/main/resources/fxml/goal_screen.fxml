@@ -35,17 +35,30 @@
         <TextArea fx:id="notesArea" promptText="Optional notes..." prefWidth="250" prefHeight="100" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
     </GridPane>
 
-    <!-- Button -->
-    <Button text="➕ Add Goal" onAction="#handleAddGoal" styleClass="accent-button"/>
+    <!-- Button for Add/Update -->
+    <Button fx:id="addGoalButton" text="➕ Add Goal" onAction="#handleAddGoal" styleClass="accent-button">
+        <tooltip>
+            <Tooltip text="Click to add a new study goal"/>
+        </tooltip>
+    </Button>
 
     <!-- Goals Section -->
     <VBox spacing="14" alignment="TOP_CENTER">
         <Label text="📋 Your Goals" styleClass="section-title"/>
-        <ListView fx:id="goalList" prefHeight="280" prefWidth="460"/>
+        <ListView fx:id="goalList" prefHeight="280" prefWidth="460">
+            <tooltip>
+                <Tooltip text="Click a goal to edit or delete it"/>
+            </tooltip>
+        </ListView>
         <HBox spacing="12" alignment="CENTER">
-            <Button text="✏️ Edit" onAction="#handleUpdateGoal"/>
-            <Button text="🗑️ Delete" onAction="#handleDeleteGoal"/>
+            <Button text="✏️ Update Goal" onAction="#handleUpdateGoal">
+                <tooltip><Tooltip text="Update this goal's details"/></tooltip>
+            </Button>
+            <Button text="🗑️ Delete Goal" onAction="#handleDeleteGoal" styleClass="delete-button">
+            <tooltip><Tooltip text="Remove this goal permanently"/></tooltip>
+            </Button>
         </HBox>
     </VBox>
+
 
 </VBox>

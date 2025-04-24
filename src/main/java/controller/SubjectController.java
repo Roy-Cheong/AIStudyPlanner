@@ -1,5 +1,6 @@
 package controller;
 
+import dao.StudyGoalDAO;
 import dao.SubjectDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -40,23 +41,33 @@ public class SubjectController {
     @FXML
     public void handleDeleteSubject() {
         String selected = subjectList.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            Subject toDelete = subjectDAO.getAllSubjects().stream()
-                    .filter(s -> s.getName().equals(selected))
-                    .findFirst().orElse(null);
+        if (selected == null) return;
 
-            if (toDelete != null) {
-                Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-                confirm.setTitle("Confirm Deletion");
-                confirm.setHeaderText(null);
-                confirm.setContentText("Are you sure you want to delete the subject '" + toDelete.getName() + "'?");
-                confirm.showAndWait().ifPresent(response -> {
-                    if (response == ButtonType.OK) {
-                        subjectDAO.deleteSubject(toDelete.getName());
-                        refreshList();
-                    }
-                });
+        // Confirm deletion
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm Deletion");
+        alert.setHeaderText("Are you sure you want to delete this subject?");
+        alert.setContentText("Subject: " + selected);
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // Optional: Check for linked goals
+                boolean hasGoals = new StudyGoalDAO().getAllGoals().stream()
+                        .anyMatch(g -> g.getSubjectName().equals(selected));
+
+                if (hasGoals) {
+                    Alert warning = new Alert(Alert.AlertType.WARNING);
+                    warning.setTitle("Deletion Blocked");
+                    warning.setHeaderText("This subject has goals linked to it.");
+                    warning.setContentText("Delete those goals first, or edit them to unlink from this subject.");
+                    warning.show();
+                    return;
+                }
+
+                subjectDAO.deleteSubjectByName(selected);
+                refreshList();
             }
-        }
+        });
     }
+
 }

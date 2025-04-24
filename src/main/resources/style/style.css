@@ -146,6 +146,12 @@ VBox, HBox {
     -fx-background-radius: 8;
 }
 
+.accent-button:hover {
+    -fx-background-color: #2980b9;
+    -fx-cursor: hand;
+}
+
+
 .screen-title {
     -fx-font-size: 22px;
     -fx-font-weight: bold;
@@ -160,4 +166,23 @@ VBox, HBox {
 
 .form-label {
     -fx-font-weight: bold;
+}
+
+.list-view .list-cell {
+    -fx-text-fill: #2c3e50;
+}
+
+.combo-box, .text-field, .text-area {
+    -fx-prompt-text-fill: #999;
+}
+
+.delete-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+}
+.delete-button:hover {
+    -fx-background-color: #c0392b;
+    -fx-cursor: hand;
 }

@@ -52,14 +52,13 @@ public class SubjectDAO {
         return list;
     }
 
-    public void deleteSubject(String name) {
-        String sql = "DELETE FROM subjects WHERE name = ?";
-        try (PreparedStatement pstmt = DBConnector.getConnection().prepareStatement(sql)) {
-            pstmt.setString(1, name);
-            pstmt.executeUpdate();
+    public void deleteSubjectByName(String name) {
+        try (PreparedStatement stmt = DBConnector.getConnection()
+                .prepareStatement("DELETE FROM subjects WHERE name = ?")) {
+            stmt.setString(1, name);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 }
